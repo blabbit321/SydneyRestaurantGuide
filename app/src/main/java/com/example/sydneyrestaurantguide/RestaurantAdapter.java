@@ -6,43 +6,61 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ImageViewHolder> {
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 
-    private int[] images;
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>{
+    private ArrayList<Restaurants> mRestaurant;
+    private RecyclerViewClickListener mListener;
 
-    public RestaurantAdapter (int[] images) {
-        this.images = images;
-    }
-    @NonNull
-    @Override
-    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list,parent, false);
-        ImageViewHolder imageViewHolder = new ImageViewHolder(view);
-        return imageViewHolder;
+    public RestaurantAdapter(ArrayList<Restaurants> restaurants, RecyclerViewClickListener listener) {
+        mRestaurant=restaurants;
+        mListener=listener;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-            int image_id = images [position];
-            holder.food.setImageResource(image_id);
-            holder.name.setText("Image :"+position);
+    public interface RecyclerViewClickListener {
+        void onClick(View view, int position);
     }
+    public static class RestaurantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView name, cuisine, rating;
+        public ImageView image;
+        private RecyclerViewClickListener mListener;
 
-    @Override
-    public int getItemCount() {
-        return images.length;
-    }
-    public static class ImageViewHolder extends RecyclerView.ViewHolder{
-        ImageView food;
-        TextView name;
+        public RestaurantViewHolder(View v, RecyclerViewClickListener listener) {
+            super(v);
+            mListener = listener;
+            v.setOnClickListener(this);
+            name=v.findViewById(R.id.tvName);
+            cuisine=v.findViewById(R.id.tvCuisine);
+            rating=v.findViewById(R.id.tvRating);
+            image = v.findViewById(R.id.imageView);
 
-        public ImageViewHolder(@NonNull View itemView) {
-            super(itemView);
-            food = itemView.findViewById(R.id.watsup);
-            name = itemView.findViewById(R.id.watsupbro);
+
         }
+        @Override
+        public void onClick (View view) {mListener.onClick(view, getAdapterPosition());}
     }
+    @Override
+    public  RestaurantAdapter.RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list, parent, false);
+        return new RestaurantViewHolder(v, mListener);
+
+    }
+    @Override
+    public void onBindViewHolder(RestaurantViewHolder holder, int position) {
+        Restaurants restaurants = mRestaurant.get(position);
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        String rate = formatter.format(restaurants.getRating());
+        holder.name.setText(restaurants.getName());
+        holder.cuisine.setText("Cuisine: "+restaurants.getCuisine());
+        holder.rating.setText(rate+"/5");
+        holder.image.setImageResource(restaurants.getPhoto());
+
+
+    }
+    @Override
+    public int getItemCount() { return mRestaurant.size();}
 }
