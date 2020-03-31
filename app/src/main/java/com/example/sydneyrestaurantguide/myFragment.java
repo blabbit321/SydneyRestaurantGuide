@@ -23,7 +23,6 @@ public class myFragment extends Fragment {
         private TextView mCuisine;
         private TextView mLocation;
         private TextView mDescription;
-        private ImageView mMap;
 
         public myFragment() {
 
@@ -38,42 +37,25 @@ public class myFragment extends Fragment {
             DecimalFormat formatter = new DecimalFormat("#.##");
             String rate = formatter.format(restaurants.getRating());
             mfood = v.findViewById(R.id.food);
-
             mTitle = v.findViewById(R.id.title);
             mRating = v.findViewById(R.id.rating);
             mCuisine = v.findViewById(R.id.cuisine);
             mLocation = v.findViewById(R.id.location);
             mDescription = v.findViewById(R.id.description);
-            mMap = v.findViewById(R.id.map);
 
             mTitle.setText(restaurants.getName());
             mRating.setText("Rating: "+rate+"/5");
             mCuisine.setText("Cuisine: "+restaurants.getCuisine());
             mLocation.setText(restaurants.getLocation());
             mDescription.setText(restaurants.getDescription());
-            mfood.setImageResource(restaurants.getPhoto());
+            mfood.setImageResource(restaurants.getFood());
 
 
-           mMap.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
 
-               }
-           });
-            mMap.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    search(mTitle);
-                }
-            });
             return v;
 
         }
 
-        private void search(TextView title) {
-            String url = "https://google.com/maps/place/"+ title;
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
 
 
 
@@ -94,4 +76,4 @@ public class myFragment extends Fragment {
         }
 
 
-}
+
