@@ -3,12 +3,13 @@ package com.example.sydneyrestaurantguide;
 import java.util.ArrayList;
 
 public class Restaurants {
+    // These are the attributes for a restaurant
     private String name;
     private String cuisine;
     private String location;
     private String description;
     private double rating;
-    private int photo;
+    private int photo;  // proof and food represent the R.id of the image resource
     private int food;
 
 
@@ -24,8 +25,10 @@ public class Restaurants {
         this.rating=rating;
         this.photo = photo;
         this.food = food;
-
+// This is the constructor class
     }
+
+    // These are the Getters and Setters
 
     public  String getName() {
         return name;
@@ -78,7 +81,7 @@ public class Restaurants {
     public void setFood(int food){ this.food=food;}
 
 
-
+    // This is the ArrayList for the Restaurants which contains all the details for the attributes
     public static ArrayList<Restaurants> getRestaurants() {
         ArrayList<Restaurants> restaurants = new ArrayList<>();
         restaurants.add(new Restaurants("Watsup Brothers","Turkish","149 Eldridge Rd, Condell Park NSW 2200",
@@ -97,14 +100,6 @@ public class Restaurants {
         restaurants.add(new Restaurants("KFC","American","1323/1325 Canterbury Rd, Punchbowl NSW 2196","HAND-MADE EVERY DAY BY REAL COOKS IN-STORE." +
                 "NO IFS. NO BUTS. NO SHORTCUTS.",4,R.drawable.kfc,R.drawable.kkc));
         return restaurants;
-    }
-
-    public static Restaurants searchRestaurant(String search){
-        for (int x=0; x<Restaurants.getRestaurants().size();x++){
-            if (Restaurants.getRestaurants().get(x).name.toLowerCase().equals(search.toLowerCase()))
-                return Restaurants.getRestaurants().get(x);
-        }
-        return null;
     }
 
 

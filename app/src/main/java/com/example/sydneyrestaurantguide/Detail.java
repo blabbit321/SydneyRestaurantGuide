@@ -14,7 +14,7 @@ public class Detail extends AppCompatActivity {
         setContentView(R.layout.detail);
         Intent intent = getIntent();
         int position = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
-
+        // The block of code from lines to 18-25, manages the fragment for detail
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment myFragment = new myFragment();
