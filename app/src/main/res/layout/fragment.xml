@@ -7,12 +7,10 @@
 
     <ImageView
         android:id="@+id/food"
-        android:layout_width="0dp"
-        android:layout_height="181dp"
+        android:layout_width="232dp"
+        android:layout_height="213dp"
         android:scaleType="centerCrop"
-
-
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/food2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher" />
@@ -82,8 +80,8 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="0dp"
-        android:layout_height="186dp"
+        android:layout_width="400dp"
+        android:layout_height="131dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
@@ -93,5 +91,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location" />
+
+    <ImageView
+        android:id="@+id/food1"
+        android:layout_width="178dp"
+        android:layout_height="109dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/food"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars[0]" />
+
+    <ImageView
+        android:id="@+id/food2"
+        android:layout_width="177dp"
+        android:layout_height="106dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/food"
+        app:layout_constraintTop_toBottomOf="@+id/food1"
+        tools:srcCompat="@tools:sample/avatars[1]" />
+
+    <ImageView
+        android:id="@+id/maps"
+        android:layout_width="176dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginRight="128dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:srcCompat="@drawable/maps" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
